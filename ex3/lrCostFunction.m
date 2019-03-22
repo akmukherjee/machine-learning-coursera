@@ -11,7 +11,7 @@ m = length(y); % number of training examples
 % You need to return the following variables correctly 
 J = 0;
 grad = zeros(size(theta));
-
+n = size(theta)(1);
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost of a particular choice of theta.
 %               You should set J to the cost.
@@ -47,16 +47,13 @@ first_part = -y.*log(hThetaX);
 second_part= (1.-y).*log(1.-hThetaX);
 J = sum(first_part-second_part)/m;
 % Adding the regularization factor
-reg_factor = (lambda/(2*m))*sum((theta.^2));
-J= J+reg_factor-lambda/(2*m)*theta(1)^2;
-
+reg_factor = (lambda/(2*m))*sum((theta(2:n).^2));
+J= J+reg_factor;
 temp = theta;
-temp(1) = 0; % because we don't add anything for j = 0 
-%Calculating Unregularized
-grad = ((1 / m) * X' * (hThetaX - y));
-%Adding Regularization
-grad = grad + (lambda / m) * temp;
-grad = grad(:);
+temp(1) = 0;
+grad = (X'*(hThetaX-y))/m;
+grad = grad+(lambda/m)*temp;
+
 % =============================================================
 
 
