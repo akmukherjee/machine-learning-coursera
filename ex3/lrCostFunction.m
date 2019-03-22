@@ -53,7 +53,7 @@ temp = theta;
 temp(1) = 0;
 grad = (X'*(hThetaX-y))/m;
 grad = grad+(lambda/m)*temp;
-
+grad= grad(:);
 % =============================================================
 
 
