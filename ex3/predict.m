@@ -20,12 +20,17 @@ p = zeros(size(X, 1), 1);
 %       information see 'help max'. If your examples are in rows, then, you
 %       can use max(A, [], 2) to obtain the max for each row.
 %
-X = [ones(size(X, 1), 1) X];
-H1 = sigmoid(X * Theta1');
-H1 = [ones(size(H1, 1), 1) H1];
-H2 = sigmoid(H1 * Theta2');
-[val index] = max(H2, [], 2);
-p = index;
+
+% Adding Ones to input Vector
+X = [ones(m,1) X];
+%Calculating the outputs of the first layer
+a2 = sigmoid(X*Theta1');
+%Adding the bias to the output of the first layer
+a2 = [ones(size(a2, 1), 1) a2];
+%Calculating the output of the second layer
+a3 = sigmoid(a2*Theta2');
+%Calculating the index of the maximum and returning the index
+[~,p] = max(a3,[],2);
 
 
 
