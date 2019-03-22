@@ -30,8 +30,13 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-predict = sigmoid(X*all_theta'); % 5000 * 401 by 401*10
-[~, p] = max(predict, [], 2);
+predict= sigmoid(X*all_theta');
+
+%Getting the index of the maximum and throw away the actual value
+[~,p] = max(predict,[],2);
+
+
+
 
 
 
